@@ -18,7 +18,26 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
 
+
 # Veri Seti Hikayesi ve Problem: Şeker Hastalığı Tahmini
+
+# YAPAY SİNİR AĞLARI (ÇOK KATMANLI ALGILAYICILAR)
 
 df = pd.read_csv("diabetes.csv")
 print(df.head())
+
+y = df["Outcome"]
+X = df.drop(["Outcome"], axis=1)
+
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.3, random_state=42)
+
+# Model & Tahmin
+
+mlpc_model = MLPClassifier().fit(X_train, y_train)
+print(mlpc_model.coefs_)
+print(mlpc_model.intercepts_)
+
+y_pred = mlpc_model.predict(X_test)
+accuracy_score(y_test, y_pred)
+
+
