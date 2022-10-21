@@ -42,6 +42,13 @@ accuracy_score(y_test, y_pred)
 
 #**************************************************************
 
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train = scaler.transform(X_train)
+
+scaler.fit(X_test)
+X_test = scaler.transform(X_test)
+
 mlpc_params = {"alpha":[1,5,0.1,0,0.01,0.001,0.0001],
                 "hidden_layer_sizes":[(10,10),(100,100),(100,100,100),(3,5)]} 
 
